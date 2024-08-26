@@ -1,4 +1,6 @@
 import org.example.Main;
+import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -9,10 +11,10 @@ public class existingUserLogIn {
         Main.setUp(Main.URL);
     }
 
-    @AfterMethod
-    public static void closeBrowser (){
-        Main.closeBrowser();
-    }
+//    @AfterMethod
+//    public static void closeBrowser (){
+//        Main.closeBrowser();
+//    }
 
     @Test(priority = 0)
     public static void positiveLogIn(){
@@ -24,5 +26,8 @@ public class existingUserLogIn {
     public static void negativeLogIn(){
         Main.fillLogInFields("Romas", "Kronas");
         Main.waitAndClick(Main.logInButton);
+        String expectedResponseErrorText = "Įvestas prisijungimo vardas ir/ arba slaptažodis yra neteisingi";
+        String actualResponseErrorText = Main.getText(By.xpath("/html/body/div/form/div/span[2]"));
+        Assert.assertEquals(actualResponseErrorText, expectedResponseErrorText);
     }
 }

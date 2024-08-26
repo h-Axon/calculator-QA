@@ -19,6 +19,8 @@ public class Main {
 
     public static final int SECONDS_TO_WAIT = 5;
 
+    public static By textError = By.id("password.errors");
+
     //registration
 
     public static By registrationButton = By.xpath("/html/body/div/form/div/h4/a");
@@ -93,14 +95,15 @@ public class Main {
         select.selectByValue(value);
     }
 
-    public static String calculateValueString(String numberOneString, String numberTwoString){
-        return Integer.toString(Integer.parseInt(numberOneString) * Integer.parseInt(numberTwoString));
-    }
-
     public static void calculatorValues(String numberOneString, String numberTwoString, String operationString){
         Main.sendKeysToFieldBox(Main.firstNumberField, numberOneString);
         Main.sendKeysToFieldBox(Main.secondNumberField, numberTwoString);
         Main.selectDropDownByValue(Main.operationDropDownButton, operationString);
+    }
+
+    public static String getText(By by){
+        waitUntilElementIsVisible(by);
+        return browser.findElement(by).getText();
     }
 
     public static String usernameGenerator(){

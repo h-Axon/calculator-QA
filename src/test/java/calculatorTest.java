@@ -14,10 +14,10 @@ public class calculatorTest {
         Main.setUp(Main.URL);
     }
 
-    @AfterMethod
-    public static void closeBrowser (){
-        Main.closeBrowser();
-    }
+//    @AfterMethod
+//    public static void closeBrowser (){
+//        Main.closeBrowser();
+//    }
 
     @Test(priority = 0)
     public static void positiveCalculatorTest(){
